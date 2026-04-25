@@ -1,14 +1,19 @@
 {
   "name": "pi-jingle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Play sounds on pi events like agent_start and agent_end",
-  "keywords": ["pi-package"],
+  "keywords": [
+    "pi-package"
+  ],
   "pi": {
-    "extensions": ["./jingle.ts"]
+    "extensions": [
+      "./jingle.ts"
+    ]
   },
   "dependencies": {},
   "files": [
     "jingle.ts",
     "sounds/"
-  ]
+  ],
+  "repository": "github:https://github.com/Git-Monke/pi-jingle"
 }

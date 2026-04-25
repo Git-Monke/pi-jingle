@@ -2,6 +2,10 @@
 
 Play sounds on pi events (agent_start, agent_end, etc.)
 
+```
+https://github.com/Git-Monke/pi-jingle
+```
+
 ## Install
 
 ```bash
