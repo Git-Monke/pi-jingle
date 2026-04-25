@@ -1,60 +1,65 @@
 # pi-jingle
 
-Play sounds on pi events (agent_start, agent_end, etc.)
-
-```
-https://github.com/Git-Monke/pi-jingle
-```
-
-## Install
+Play sounds on pi events.
 
 ```bash
 pi install npm:pi-jingle
 ```
 
-## Usage
+## Configuration
 
-The extension auto-detects and plays the included `done.mp3` sound on `agent_end` by default. No configuration needed!
-
-### Custom Sounds
-
-Add sounds to your `~/.pi/agent/settings.json`:
+Add to `~/.pi/agent/settings.json`:
 
 ```json
 {
   "sounds": {
-    "agent_end": "/path/to/end-sound.mp3",
-    "agent_start": "/path/to/start-sound.mp3",
-    "turn_end": "/path/to/turn-sound.mp3"
+    "agent_end": "/path/to/done.mp3",
+    "when_coding": "/path/to/music.mp3"
   }
 }
 ```
 
-Path formats:
-- `~/sounds/ding.mp3` → `~/.pi/sounds/ding.mp3`
-- `/absolute/path/ding.mp3` → works directly
-- `./sounds/ding.mp3` → `~/.pi/sounds/ding.mp3`
+**Path formats:**
+- `/absolute/path.mp3` - absolute path
+- `~/sounds/file.mp3` - resolves to `~/.pi/sounds/file.mp3`
+- `./sounds/file.mp3` - resolves to `~/.pi/sounds/file.mp3`
 
-### Commands
+**Volume:** Use an object for volume control (0.0 - 1.0):
+```json
+{
+  "sounds": {
+    "agent_end": { "path": "/path/to/sound.mp3", "volume": 0.5 }
+  }
+}
+```
+
+## Supported Events
+
+| Event | Description |
+|-------|-------------|
+| `agent_start` | Task begins |
+| `agent_end` | Task completes |
+| `session_start` | pi starts |
+| `session_shutdown` | pi closes |
+| `turn_start` | User message received |
+| `turn_end` | Response sent |
+| `tool_call` | Tool execution |
+| `tool_result` | Tool result received |
+
+**Default:** Plays `done.mp3` on `agent_end` if no config exists.
+
+**`when_coding`:** Loops a song from `agent_start` until `agent_end`.
+
+## Commands
 
 - `/sounds list` - Show configured sounds
-- `/sounds agent_end` - Test playing a sound
-- `/sounds reload` - Reload config from settings.json
-
-### Supported Events
-
-- `session_start`
-- `session_shutdown`
-- `agent_start`
-- `agent_end`
-- `turn_start`
-- `turn_end`
-- `tool_call`
-- `tool_result`
+- `/sounds reload` - Reload config
 
 ## Requirements
 
-A sound player for your platform:
-- **macOS**: afplay (built-in)
+Sound player for your platform:
+- **macOS**: afplay (built-in) or ffplay
 - **Linux**: paplay, aplay, or ffplay
 - **Windows**: PowerShell (built-in)
+
+Install ffplay for volume control: `brew install ffplay`
