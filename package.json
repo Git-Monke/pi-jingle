@@ -13,6 +13,7 @@
   "dependencies": {},
   "files": [
     "jingle.ts",
+    "README.md",
     "sounds/"
   ],
   "repository": "github:Git-Monke/pi-jingle"
