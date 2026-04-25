@@ -1,6 +1,6 @@
 {
   "name": "pi-jingle",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Play sounds on pi events like agent_start and agent_end",
   "keywords": [
     "pi-package"
