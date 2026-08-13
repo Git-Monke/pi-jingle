@@ -39,8 +39,11 @@ Add to `~/.pi/agent/settings.json`:
 |-------|-------------|
 | `agent_start` | Task begins |
 | `agent_end` | Task completes |
+| `agent_settled` | Agent fully settled — no retry, compaction, or queued follow-up left (pi is now waiting for your input) |
 | `session_start` | pi starts |
 | `session_shutdown` | pi closes |
+| `session_info_changed` | Session renamed (via `/name`) |
+| `project_trust` | pi asks to trust a project |
 | `turn_start` | User message received |
 | `turn_end` | Response sent |
 | `tool_call` | Tool execution |
