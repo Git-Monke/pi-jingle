@@ -1,4 +1,4 @@
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { existsSync } from "node:fs";
 import process from "node:process";
 import { readFile } from "node:fs/promises";
@@ -177,13 +177,22 @@ export default async function(pi_: ExtensionAPI) {
   const pi = pi_;
 
   // Supported events that can have sounds
+  // Events added for newer pi versions (>= 0.73):
+  //   agent_settled     - agent run fully settled, no retry/compaction/follow-up left
+  //   project_trust     - pi asks the user to trust a project
+  //   session_info_changed - session renamed via /name
+  // Note: provider-level hooks (before_provider_headers, before_provider_request,
+  // after_provider_response) fire per API request and are intentionally excluded.
   const supportedEvents = [
     "agent_end",
+    "agent_settled",
     "agent_start",
     "turn_start",
     "turn_end",
     "session_start",
     "session_shutdown",
+    "session_info_changed",
+    "project_trust",
     "tool_call",
     "tool_result",
   ];
